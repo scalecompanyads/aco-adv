@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ACO Advocacia | Direito Trabalhista Bancário</title>
 <meta name="description" content="Advocacia trabalhista especializada em bancários, correspondentes bancários e profissionais do mercado financeiro. Solicite a análise do seu caso.">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#120e0a">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;0,700;1,600&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
@@ -90,31 +94,121 @@
     .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
   }
   @media (max-width: 760px) {
-    .grid-3, .grid-4, .grid-2, .trust-grid { grid-template-columns: 1fr !important; }
+    html, body { overflow-x: clip; }
+    .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr !important; }
     .quote-card[style*="grid-column"] { grid-column: auto !important; }
     .about-row { flex-direction: column !important; }
     .about-row > div:first-child { flex: 0 0 auto !important; max-width: 320px !important; width: 100% !important; margin: 12px auto !important; }
+    .about-copy { min-width: 0 !important; }
+
+    .btn-cta {
+      width: 100%;
+      max-width: 100%;
+      min-height: 54px;
+      padding: 14px 16px;
+      font-size: 11px;
+      line-height: 1.35;
+      text-align: center;
+      white-space: normal;
+    }
+    .btn-cta .cta-arrow { flex: 0 0 auto; }
+    .quote-card, .step-card, .faq-item { min-width: 0; overflow-wrap: anywhere; }
+    .quote-card, .faq-item { padding: 22px 20px !important; }
+
+    .trust-strip { padding: 28px 20px !important; }
+    .trust-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 20px 14px !important; }
+    .trust-grid > div { min-width: 0; align-items: flex-start !important; gap: 10px !important; }
+    .trust-grid svg { flex: 0 0 20px; margin-top: 1px; }
+    .trust-grid span { min-width: 0; font-size: 12px !important; line-height: 1.35; }
+
+    .problems-section, .about-section, .faq-section { padding: 64px 20px !important; }
+    .steps-section { padding: 76px 20px 64px !important; }
+    .final-cta-section { padding: 68px 20px !important; }
+    .section-heading, .section-heading-centered { margin-bottom: 34px !important; }
+    .problem-grid, .faq-grid { gap: 14px !important; }
+    .problem-cta {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 18px !important;
+      padding: 24px 20px !important;
+      text-align: center;
+    }
+    .problem-cta p { font-size: 18px !important; }
+
+    .steps-grid { gap: 12px !important; }
+    .steps-grid .step-card {
+      display: grid !important;
+      grid-template-columns: 44px minmax(0, 1fr);
+      grid-template-rows: auto auto auto;
+      column-gap: 16px !important;
+      row-gap: 6px !important;
+      align-items: start;
+      padding: 20px !important;
+    }
+    .steps-grid .icon-badge { grid-column: 1; grid-row: 1 / span 3; }
+    .steps-grid .step-number, .steps-grid h3, .steps-grid .body-text { grid-column: 2; min-width: 0; }
+    .steps-grid .step-number { margin-top: 1px; }
+    .steps-grid h3 { font-size: 18px !important; line-height: 1.2; }
+    .steps-grid .body-text { font-size: 13.5px !important; line-height: 1.55 !important; }
+    .steps-cta { margin-top: 32px !important; }
+    .steps-cta .btn-cta { max-width: 340px; }
+
+    .about-copy .btn-cta { max-width: 340px; }
+    .faq-item { gap: 12px !important; }
+    .final-cta-box { padding: 34px 20px !important; gap: 18px !important; }
+    .final-cta-box .btn-cta { max-width: 340px; }
+    .site-footer { padding: 38px 20px 32px !important; }
+
+    .hero {
+      height: auto !important;
+      min-height: 1050px;
+      background: var(--bg) url('mobile-bg-hero.png') center top / cover no-repeat;
+    }
+    .hero-image { display: none; }
+    .hero-overlay-primary {
+      background: linear-gradient(180deg, rgba(18,14,10,0.07) 0%, rgba(18,14,10,0.12) 27%, rgba(18,14,10,0.5) 49%, rgba(18,14,10,0.9) 72%, var(--bg) 100%) !important;
+    }
+    .hero-overlay-secondary {
+      background: linear-gradient(180deg, transparent 0%, rgba(18,14,10,0.06) 100%) !important;
+    }
+    .hero-content {
+      max-width: none !important;
+      min-height: 1050px;
+      justify-content: flex-end !important;
+      align-items: center;
+      gap: 15px !important;
+      padding: 390px 24px max(42px, env(safe-area-inset-bottom)) !important;
+      text-align: center;
+    }
+    .hero-logo { height: 36px !important; align-self: center !important; }
+    .hero-rule { align-self: center; }
+    .hero-eyebrow { font-size: 10.5px !important; line-height: 1.45; }
+    .hero-title { font-size: clamp(27px, 7.3vw, 32px) !important; line-height: 1.17 !important; }
+    .hero-description { max-width: 355px !important; font-size: 15px !important; line-height: 1.58 !important; }
+    .hero-action { align-items: center !important; margin-top: 4px !important; }
+    .hero-action { width: 100%; }
+    .hero-action .btn-cta { width: 100%; max-width: 340px; }
   }
 </style>
 </head>
 <body>
-<div style="--gold:#b6935c; --cta:#33a852; --ink:#1b1509; --bg:#120e0a; --bg-alt:#171109; --bg-card:#1d1610; --line:color-mix(in srgb, var(--gold), transparent 86%); --text:#f5efe3; --text-muted:#b6a98e; --bg-light:#f5efe1; --bg-light-card:#ffffff; --text-muted-light:#7d6c50; --line-light:rgba(27,21,9,0.1); width:100%; position:relative; overflow-x:hidden; background:var(--bg); color:var(--text); font-family:'Work Sans',system-ui,sans-serif;">
+<div class="site-shell" style="--gold:#b6935c; --cta:#33a852; --ink:#1b1509; --bg:#120e0a; --bg-alt:#171109; --bg-card:#1d1610; --line:color-mix(in srgb, var(--gold), transparent 86%); --text:#f5efe3; --text-muted:#b6a98e; --bg-light:#f5efe1; --bg-light-card:#ffffff; --text-muted-light:#7d6c50; --line-light:rgba(27,21,9,0.1); width:100%; position:relative; overflow-x:hidden; background:var(--bg); color:var(--text); font-family:'Work Sans',system-ui,sans-serif;">
 
   <div class="grain-overlay"></div>
 
   <!-- HERO (dark, photo) -->
-  <section style="position:relative; width:100%; height:clamp(600px,60vw,820px); overflow:hidden;">
-    <img src="bg-hero-sm.jpg" alt="Dr. Rodrigo, sócio da ACO Advocacia" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:70% 18%; z-index:1;" />
-    <div style="position:absolute; inset:0; z-index:2; background:linear-gradient(90deg, var(--bg) 0%, var(--bg) 26%, rgba(18,14,10,0.88) 44%, rgba(18,14,10,0.3) 66%, rgba(18,14,10,0.04) 100%);"></div>
-    <div style="position:absolute; inset:0; z-index:2; background:linear-gradient(180deg, rgba(18,14,10,0.5) 0%, rgba(18,14,10,0) 20%, rgba(18,14,10,0) 74%, rgba(18,14,10,0.68) 100%);"></div>
+  <section class="hero" style="position:relative; width:100%; height:clamp(600px,60vw,820px); overflow:hidden;">
+    <img class="hero-image" src="bg-hero-sm.jpg" alt="Dr. Rodrigo, sócio da ACO Advocacia" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:70% 18%; z-index:1;" />
+    <div class="hero-overlay-primary" style="position:absolute; inset:0; z-index:2; background:linear-gradient(90deg, var(--bg) 0%, var(--bg) 26%, rgba(18,14,10,0.88) 44%, rgba(18,14,10,0.3) 66%, rgba(18,14,10,0.04) 100%);"></div>
+    <div class="hero-overlay-secondary" style="position:absolute; inset:0; z-index:2; background:linear-gradient(180deg, rgba(18,14,10,0.5) 0%, rgba(18,14,10,0) 20%, rgba(18,14,10,0) 74%, rgba(18,14,10,0.68) 100%);"></div>
 
     <div class="hero-content" style="position:relative; z-index:5; height:100%; display:flex; flex-direction:column; justify-content:center; max-width:600px; padding:clamp(48px,7vw,72px) clamp(20px,5vw,48px); gap:26px;">
-      <img src="logo-sm.png" alt="ACO Advocacia" style="height:42px; width:auto; align-self:flex-start; filter:drop-shadow(0 2px 12px rgba(0,0,0,0.5));" />
-      <div class="rule-mark" style="margin-bottom:0;"></div>
-      <p class="eyebrow" style="margin:0; text-shadow:0 2px 16px rgba(0,0,0,0.5);">DIREITO TRABALHISTA · BANCÁRIOS E MERCADO FINANCEIRO</p>
-      <h1 style="font-family:'Spectral',Georgia,serif; font-weight:600; font-size:clamp(28px,4vw,46px); line-height:1.22; letter-spacing:-0.01em; color:var(--text); margin:0; text-shadow:0 4px 30px rgba(0,0,0,0.6);">Trabalha ou trabalhou em banco e acredita que seus <span style="color:var(--gold); font-style:italic;">direitos trabalhistas</span> não foram respeitados?</h1>
-      <p style="font-family:'Work Sans',sans-serif; font-size:16.5px; line-height:1.7; color:var(--text-muted); margin:0; max-width:500px; text-shadow:0 2px 18px rgba(0,0,0,0.55);">A ACO Advocacia analisa jornada, metas, cargo, remuneração e as demais condições da sua relação de trabalho para te dar clareza sobre seus direitos, com responsabilidade e sigilo.</p>
-      <div style="display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin-top:6px;">
+      <img class="hero-logo" src="logo-sm.png" alt="ACO Advocacia" style="height:42px; width:auto; align-self:flex-start; filter:drop-shadow(0 2px 12px rgba(0,0,0,0.5));" />
+      <div class="rule-mark hero-rule" style="margin-bottom:0;"></div>
+      <p class="eyebrow hero-eyebrow" style="margin:0; text-shadow:0 2px 16px rgba(0,0,0,0.5);">DIREITO TRABALHISTA · BANCÁRIOS E MERCADO FINANCEIRO</p>
+      <h1 class="hero-title" style="font-family:'Spectral',Georgia,serif; font-weight:600; font-size:clamp(28px,4vw,46px); line-height:1.22; letter-spacing:-0.01em; color:var(--text); margin:0; text-shadow:0 4px 30px rgba(0,0,0,0.6);">Trabalha ou trabalhou em banco e acredita que seus <span style="color:var(--gold); font-style:italic;">direitos trabalhistas</span> não foram respeitados?</h1>
+      <p class="hero-description" style="font-family:'Work Sans',sans-serif; font-size:16.5px; line-height:1.7; color:var(--text-muted); margin:0; max-width:500px; text-shadow:0 2px 18px rgba(0,0,0,0.55);">A ACO Advocacia analisa jornada, metas, cargo, remuneração e as demais condições da sua relação de trabalho para te dar clareza sobre seus direitos, com responsabilidade e sigilo.</p>
+      <div class="hero-action" style="display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin-top:6px;">
         <a href="#" class="js-wa-cta btn-cta" target="_blank" rel="noopener">SOLICITAR ANÁLISE DO MEU CASO<svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         <span style="font-family:'Work Sans',sans-serif; font-size:13px; color:var(--text-muted);">Atendimento confidencial, direto pelo WhatsApp</span>
       </div>
@@ -122,7 +216,7 @@
   </section>
 
   <!-- TRUST STRIP (light) -->
-  <section style="--bg:var(--bg-light); --bg-alt:var(--bg-light); --bg-card:var(--bg-light-card); --text:var(--ink); --text-muted:var(--text-muted-light); --line:var(--line-light); width:100%; background:var(--bg); color:var(--text); border-bottom:1px solid var(--line); padding:32px clamp(20px,5vw,48px);">
+  <section class="trust-strip" style="--bg:var(--bg-light); --bg-alt:var(--bg-light); --bg-card:var(--bg-light-card); --text:var(--ink); --text-muted:var(--text-muted-light); --line:var(--line-light); width:100%; background:var(--bg); color:var(--text); border-bottom:1px solid var(--line); padding:32px clamp(20px,5vw,48px);">
     <div class="trust-grid" style="max-width:1140px; margin:0 auto; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px;">
       <div style="display:flex; align-items:center; gap:14px;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
@@ -144,14 +238,14 @@
   </section>
 
   <!-- VOCÊ JÁ SE PEGOU PENSANDO (dark) -->
-  <section style="width:100%; background:var(--bg-alt); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
+  <section class="problems-section" style="width:100%; background:var(--bg-alt); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
     <div style="max-width:1140px; margin:0 auto;">
-      <div style="max-width:680px; margin:0 0 56px 0;">
+      <div class="section-heading" style="max-width:680px; margin:0 0 56px 0;">
         <div class="rule-mark"></div>
         <p class="eyebrow">VOCÊ NÃO ESTÁ SOZINHO</p>
         <h2 class="section-title">Se você já pensou algo assim, pode haver um direito sendo desrespeitado</h2>
       </div>
-      <div class="grid-3" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px;">
+      <div class="grid-3 problem-grid" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px;">
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Faço horas extras que nunca aparecem no meu contracheque.</p>
@@ -177,7 +271,7 @@
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Acumulo funções que não são minhas e nunca fui pago por isso.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Desvio, acúmulo ou diferença salarial</span>
         </div>
-        <div class="quote-card hover-lift" style="grid-column:1 / -1; padding:30px 28px; display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; background:color-mix(in srgb, var(--gold), transparent 92%);">
+        <div class="quote-card hover-lift problem-cta" style="grid-column:1 / -1; padding:30px 28px; display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; background:color-mix(in srgb, var(--gold), transparent 92%);">
           <p style="font-family:'Spectral',serif; font-size:19px; font-weight:600; color:var(--text); margin:0; line-height:1.4;">Reconheceu alguma dessas frases?</p>
           <a href="#" class="js-wa-cta btn-cta" target="_blank" rel="noopener">SOLICITAR ANÁLISE DO MEU CASO<svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
@@ -226,60 +320,57 @@
   </div>
 
   <!-- COMO FUNCIONA (light) -->
-  <section style="--bg:var(--bg-light); --bg-alt:var(--bg-light); --bg-card:var(--bg-light-card); --text:var(--ink); --text-muted:var(--text-muted-light); --line:var(--line-light); width:100%; background:var(--bg); color:var(--text); padding:clamp(80px,11vw,132px) clamp(20px,5vw,48px) clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
+  <section class="steps-section" style="--bg:var(--bg-light); --bg-alt:var(--bg-light); --bg-card:var(--bg-light-card); --text:var(--ink); --text-muted:var(--text-muted-light); --line:var(--line-light); width:100%; background:var(--bg); color:var(--text); padding:clamp(80px,11vw,132px) clamp(20px,5vw,48px) clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
     <div style="max-width:1140px; margin:0 auto;">
-      <div style="max-width:660px; margin:0 auto 56px auto; text-align:center;">
+      <div class="section-heading-centered" style="max-width:660px; margin:0 auto 56px auto; text-align:center;">
         <div class="rule-mark" style="margin:0 auto 14px auto;"></div>
         <p class="eyebrow" style="text-align:center;">COMO FUNCIONA</p>
         <h2 class="section-title" style="text-align:center;">Um caminho claro para tomar sua decisão com segurança</h2>
       </div>
-      <div class="grid-4" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px;">
+      <div class="grid-4 steps-grid" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px;">
         <div class="step-card hover-lift" style="padding:28px 22px; display:flex; flex-direction:column; gap:16px;">
           <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg></div>
-          <span style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">01</span>
+          <span class="step-number" style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">01</span>
           <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">Entender possíveis irregularidades</h3>
           <p class="body-text" style="font-size:14px;">Analisamos os detalhes da sua rotina de trabalho para identificar o que pode estar em desacordo com a lei.</p>
         </div>
         <div class="step-card hover-lift" style="padding:28px 22px; display:flex; flex-direction:column; gap:16px;">
           <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/></svg></div>
-          <span style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">02</span>
+          <span class="step-number" style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">02</span>
           <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">Preservar provas e direitos trabalhistas</h3>
           <p class="body-text" style="font-size:14px;">Orientamos sobre como reunir e preservar documentos e registros que sustentam o seu caso.</p>
         </div>
         <div class="step-card hover-lift" style="padding:28px 22px; display:flex; flex-direction:column; gap:16px;">
           <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5z"/><path d="M8 9h8M8 12h5"/></svg></div>
-          <span style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">03</span>
+          <span class="step-number" style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">03</span>
           <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">Buscar orientação jurídica responsável</h3>
           <p class="body-text" style="font-size:14px;">Explicamos, de forma clara, o que a legislação trabalhista prevê para a sua situação específica.</p>
         </div>
         <div class="step-card hover-lift" style="padding:28px 22px; display:flex; flex-direction:column; gap:16px;">
           <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div>
-          <span style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">04</span>
+          <span class="step-number" style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">04</span>
           <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">Tomar decisão com segurança jurídica</h3>
           <p class="body-text" style="font-size:14px;">Você decide os próximos passos com informação completa sobre riscos, prazos e possibilidades.</p>
         </div>
       </div>
-      <div style="display:flex; justify-content:center; margin-top:52px;">
+      <div class="steps-cta" style="display:flex; justify-content:center; margin-top:52px;">
         <a href="#" class="js-wa-cta btn-cta" target="_blank" rel="noopener">SOLICITAR ANÁLISE DO MEU CASO<svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
       </div>
     </div>
   </section>
 
   <!-- SOBRE O ESCRITÓRIO (dark) -->
-  <section style="width:100%; background:var(--bg-alt); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
+  <section class="about-section" style="width:100%; background:var(--bg-alt); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
     <div class="about-row" style="max-width:1140px; margin:0 auto; display:flex; gap:64px; align-items:center;">
       <div style="flex:0 0 360px; max-width:360px; position:relative; margin:12px;">
         <div class="corner-tl"></div>
         <div class="corner-br"></div>
-        <div style="border:1.5px dashed var(--line); border-radius:8px; height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:var(--bg-card);">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5a2 2 0 00-2.8 0L6 18"/></svg>
-          <span style="font-family:'Work Sans',sans-serif; font-size:11.5px; font-weight:600; letter-spacing:0.06em; color:var(--text-muted); text-align:center; text-transform:uppercase; padding:0 32px; line-height:1.6;">Foto do escritório ou da equipe</span>
-        </div>
+        <img src="dr-rodrigo.png" alt="Dr. Rodrigo, sócio da ACO Advocacia" style="display:block; width:100%; height:420px; object-fit:cover; object-position:center top; border-radius:8px; border:1px solid var(--line);" />
         <div style="margin-top:16px; display:flex; justify-content:flex-start;">
           <span style="display:inline-block; border:1px solid var(--gold); padding:7px 16px; border-radius:20px; font-family:'Work Sans',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--gold); text-transform:uppercase;">Sócio Fundador</span>
         </div>
       </div>
-      <div style="flex:1; display:flex; flex-direction:column; gap:18px; min-width:280px;">
+      <div class="about-copy" style="flex:1; display:flex; flex-direction:column; gap:18px; min-width:280px;">
         <div class="rule-mark"></div>
         <p class="eyebrow">SOBRE O ESCRITÓRIO</p>
         <h2 class="section-title" style="margin-bottom:0;">Dr. Rodrigo, sócio da ACO Advocacia</h2>
@@ -293,14 +384,14 @@
   </section>
 
   <!-- DÚVIDAS COMUNS (light) -->
-  <section style="--bg:var(--bg-light); --bg-alt:var(--bg-light); --bg-card:var(--bg-light-card); --text:var(--ink); --text-muted:var(--text-muted-light); --line:var(--line-light); width:100%; background:var(--bg); color:var(--text); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
+  <section class="faq-section" style="--bg:var(--bg-light); --bg-alt:var(--bg-light); --bg-card:var(--bg-light-card); --text:var(--ink); --text-muted:var(--text-muted-light); --line:var(--line-light); width:100%; background:var(--bg); color:var(--text); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
     <div style="max-width:1140px; margin:0 auto;">
-      <div style="max-width:660px; margin:0 0 56px 0;">
+      <div class="section-heading" style="max-width:660px; margin:0 0 56px 0;">
         <div class="rule-mark"></div>
         <p class="eyebrow">DÚVIDAS COMUNS</p>
         <h2 class="section-title">Se alguma dessas dúvidas te impede de agir, saiba que isso é normal</h2>
       </div>
-      <div class="grid-2" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px;">
+      <div class="grid-2 faq-grid" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px;">
         <div class="faq-item hover-lift" style="padding:30px; display:flex; flex-direction:column; gap:14px;">
           <div class="quote-badge">"</div>
           <h3 style="font-family:'Spectral',serif; font-style:italic; font-size:17px; font-weight:600; color:var(--text); margin:0;">"Tenho receio de expor minha situação profissional."</h3>
@@ -326,11 +417,11 @@
   </section>
 
   <!-- CTA FINAL (dark) -->
-  <section style="width:100%; background:linear-gradient(180deg, var(--bg-alt) 0%, #0e0a07 100%); padding:clamp(72px,11vw,140px) clamp(20px,5vw,48px); border-top:1px solid var(--line);">
+  <section class="final-cta-section" style="width:100%; background:linear-gradient(180deg, var(--bg-alt) 0%, #0e0a07 100%); padding:clamp(72px,11vw,140px) clamp(20px,5vw,48px); border-top:1px solid var(--line);">
     <div style="max-width:640px; margin:0 auto; position:relative; padding:12px;">
       <div class="corner-tl"></div>
       <div class="corner-br"></div>
-      <div style="border:1px solid var(--line); padding:clamp(40px,6vw,64px) clamp(28px,5vw,56px); display:flex; flex-direction:column; align-items:center; gap:22px; text-align:center; background:rgba(18,14,10,0.4); border-radius:8px;">
+      <div class="final-cta-box" style="border:1px solid var(--line); padding:clamp(40px,6vw,64px) clamp(28px,5vw,56px); display:flex; flex-direction:column; align-items:center; gap:22px; text-align:center; background:rgba(18,14,10,0.4); border-radius:8px;">
         <img src="logo-sm.png" alt="ACO Advocacia" style="height:48px; width:auto;" />
         <h2 class="section-title" style="text-align:center; margin-bottom:0;">Entender seus direitos é o primeiro passo</h2>
         <p class="body-text" style="text-align:center; font-size:16.5px;">Fale agora com a ACO Advocacia e solicite a análise do seu caso.</p>
@@ -340,7 +431,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer style="width:100%; background:#0e0a07; padding:44px clamp(20px,5vw,48px) 36px clamp(20px,5vw,48px); border-top:1px solid var(--line);">
+  <footer class="site-footer" style="width:100%; background:#0e0a07; padding:44px clamp(20px,5vw,48px) 36px clamp(20px,5vw,48px); border-top:1px solid var(--line);">
     <div style="max-width:1140px; margin:0 auto; display:flex; flex-direction:column; gap:18px;">
       <div style="display:flex; align-items:center;">
         <img src="logo-sm.png" alt="ACO Advocacia" style="height:32px; width:auto; opacity:0.9;" />
