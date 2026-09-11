@@ -58,6 +58,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .rule-mark { width: 36px; height: 1px; background: var(--gold); margin: 0 0 14px 0; }
 
+  /* Grade de situações: 3 cards na primeira linha e 2 mais largos na segunda (sem card órfão) */
+  .problem-grid .quote-card { grid-column: span 2; }
+  .problem-grid .quote-card:nth-child(n+4) { grid-column: span 3; }
+  .btn-card {
+    display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; margin-top: auto;
+    padding: 10px 16px; border-radius: 6px; border: 1px solid color-mix(in srgb, var(--gold), transparent 55%);
+    font-family: 'Work Sans', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+  .btn-card:hover { background: color-mix(in srgb, var(--gold), transparent 88%); border-color: var(--gold); }
+  .btn-card:hover .cta-arrow { transform: translate(2px,-2px); }
+
   .icon-badge {
     width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
     background: color-mix(in srgb, var(--text), transparent 93%);
@@ -95,12 +107,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* HERO editorial: texto à esquerda, card do titular à direita */
   .hero {
-    position: relative; width: 100%; overflow: hidden; color: var(--text);
+    position: relative; width: 100%; min-height: 100vh; min-height: 100svh; overflow: hidden; color: var(--text);
+    display: flex; align-items: center;
     background: radial-gradient(ellipse 60% 70% at 82% 45%, color-mix(in srgb, var(--gold), transparent 86%) 0%, transparent 70%), var(--bg);
-    padding: clamp(48px, 6vw, 72px) clamp(20px, 5vw, 48px) clamp(64px, 8vw, 96px);
+    padding: clamp(48px, 6vw, 72px) clamp(20px, 5vw, 48px);
   }
   .hero-inner {
-    max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    width: 100%; max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
     gap: clamp(40px, 5vw, 72px); align-items: stretch;
   }
   /* Coluna de texto ocupa a altura do card: logo no topo, CTA na base, texto centralizado entre eles */
@@ -115,10 +128,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hero-description { font-family: 'Work Sans', sans-serif; font-size: 16.5px; line-height: 1.7; color: var(--text-muted); margin: 0; max-width: 540px; }
   .hero-description strong { font-weight: 600; color: var(--text); }
   .hero-action { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 4px; }
+  @media (min-width: 761px) {
+    .hero-action .btn-cta { padding: 23px 42px; font-size: 15px; gap: 11px; }
+    .hero-action .btn-cta .cta-arrow { width: 15px; height: 15px; }
+  }
 
   .titular-card {
-    position: relative; align-self: center; background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px; overflow: visible;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+    position: relative; align-self: center; border-radius: 8px; overflow: visible;
+    /* Fundo preto com borda fina em gradiente dourado de baixa opacidade */
+    border: 1px solid transparent;
+    background:
+      linear-gradient(#0b0807, #0b0807) padding-box,
+      linear-gradient(155deg, color-mix(in srgb, var(--gold), transparent 30%) 0%, color-mix(in srgb, var(--gold), transparent 88%) 45%, color-mix(in srgb, var(--gold), transparent 70%) 75%, color-mix(in srgb, var(--gold), transparent 35%) 100%) border-box;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
   }
   .titular-photo { display: block; width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: center 34%; border-radius: 8px 8px 0 0; }
   .titular-body { padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 12px; }
@@ -144,9 +166,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .marquee-set { display: flex; align-items: center; gap: 28px; }
   .marquee-item { font-family: 'Work Sans', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--ink); display: flex; align-items: center; height: 52px; white-space: nowrap; }
 
+  /* Faixas de confiança abaixo do hero: duas faixas na diagonal, cruzadas em X, rolando em sentidos opostos */
+  /* Container sem altura: as faixas ficam sobre a emenda hero/segunda dobra, sem empurrar o conteúdo */
+  .trust-ribbons { position: relative; width: 100%; height: 0; z-index: 8; overflow: visible; }
+  .trust-ribbon { position: absolute; left: -4%; width: 108%; top: 0; height: 50px; overflow: hidden; }
+  .trust-ribbon--gold {
+    z-index: 2; color: var(--ink); transform: translateY(-50%) rotate(-2deg);
+    background: linear-gradient(100deg, color-mix(in srgb, var(--gold), white 32%) 0%, var(--gold) 22%, color-mix(in srgb, var(--gold), black 20%) 48%, var(--gold) 74%, color-mix(in srgb, var(--gold), white 22%) 100%);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+  }
+  .trust-ribbon--dark {
+    z-index: 1; color: var(--gold); transform: translateY(-50%) rotate(2deg);
+    background: #0b0807; border-top: 1px solid color-mix(in srgb, var(--gold), transparent 60%); border-bottom: 1px solid color-mix(in srgb, var(--gold), transparent 60%);
+  }
+  .trust-ribbon--reverse .marquee-track { animation-direction: reverse; }
+  .trust-ribbon .marquee-set { gap: 26px; }
+  .trust-item { display: flex; align-items: center; gap: 10px; height: 50px; white-space: nowrap; font-family: 'Work Sans', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .trust-item svg { flex: 0 0 16px; opacity: 0.85; }
+
   @media (max-width: 1200px) {
     .grid-3 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
     .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    .problem-grid .quote-card, .problem-grid .quote-card:nth-child(n+4) { grid-column: auto; }
+    .problem-grid .quote-card:last-child { grid-column: 1 / -1; }
   }
   @media (max-width: 960px) {
     .hero-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -156,7 +198,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (max-width: 760px) {
     html, body { overflow-x: clip; }
     .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr !important; }
-    .quote-card[style*="grid-column"] { grid-column: auto !important; }
+    .problem-grid .quote-card:last-child { grid-column: auto; }
 
     .btn-cta {
       width: 100%;
@@ -172,26 +214,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .quote-card, .step-card, .faq-item { min-width: 0; overflow-wrap: anywhere; }
     .quote-card, .faq-item { padding: 22px 20px !important; }
 
-    .trust-strip { padding: 28px 20px !important; }
-    .trust-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 20px 14px !important; }
-    .trust-grid > div { min-width: 0; align-items: flex-start !important; gap: 10px !important; }
-    .trust-grid svg { flex: 0 0 20px; margin-top: 1px; }
-    .trust-grid span { min-width: 0; font-size: 12px !important; line-height: 1.35; }
+    .trust-ribbon, .trust-item { height: 44px; }
+    .trust-item { font-size: 11px; }
 
     .problems-section, .office-section, .faq-section { padding: 64px 20px !important; }
     .steps-section { padding: 76px 20px 64px !important; }
     .final-cta-section { padding: 68px 20px !important; }
     .section-heading, .section-heading-centered { margin-bottom: 34px !important; }
     .problem-grid, .faq-grid { gap: 14px !important; }
-    .problem-cta {
-      flex-direction: column !important;
-      align-items: stretch !important;
-      gap: 18px !important;
-      padding: 24px 20px !important;
-      text-align: center;
-    }
-    .problem-cta .problem-cta-title { font-size: 18px !important; }
-    .problem-cta .body-text { font-size: 14px !important; }
 
     .steps-grid { gap: 12px !important; }
     .steps-grid .step-card {
@@ -240,7 +270,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .office-stats > div + div { border-left: 0; padding-left: 0; }
     .office-stats .stat-number { font-size: 30px; flex: 0 0 96px; }
     .office-stats .stat-label { margin-top: 0; }
-    .office-cta .btn-cta { max-width: 340px; }
   }
 </style>
 </head>
@@ -286,30 +315,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- TRUST STRIP (light) -->
-  <section class="trust-strip" style="--bg:var(--bg-light); --bg-alt:var(--bg-light); --bg-card:var(--bg-light-card); --text:var(--ink); --text-muted:var(--text-muted-light); --line:var(--line-light); width:100%; background:var(--bg); color:var(--text); border-bottom:1px solid var(--line); padding:32px clamp(20px,5vw,48px);">
-    <div class="trust-grid" style="max-width:1140px; margin:0 auto; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px;">
-      <div style="display:flex; align-items:center; gap:14px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
-        <span style="font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--text);">Atendimento sigiloso</span>
+  <!-- FAIXAS DE CONFIANÇA (dois marquees em sentidos opostos) -->
+  <div class="trust-ribbons">
+    <div class="trust-ribbon trust-ribbon--gold">
+      <div class="marquee-track" style="height:100%; animation-duration:30s;">
+      <div class="marquee-set">
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
       </div>
-      <div style="display:flex; align-items:center; gap:14px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>
-        <span style="font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--text);">Análise personalizada do caso</span>
+      <div class="marquee-set">
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
       </div>
-      <div style="display:flex; align-items:center; gap:14px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
-        <span style="font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--text);">Sem compromisso inicial</span>
-      </div>
-      <div style="display:flex; align-items:center; gap:14px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>
-        <span style="font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--text);">Atuação em todo o país</span>
       </div>
     </div>
-  </section>
+    <div class="trust-ribbon trust-ribbon--dark trust-ribbon--reverse">
+      <div class="marquee-track" style="height:100%; animation-duration:30s;">
+      <div class="marquee-set">
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+      </div>
+      <div class="marquee-set">
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="9" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Atendimento sigiloso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg>Análise personalizada do caso</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Sem compromisso inicial</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+        <span class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>Atuação em todo o país</span><svg width="6" height="6" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="currentColor" transform="rotate(45 5 5)"/></svg>
+      </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- O ESCRITÓRIO (light) -->
-  <section class="office-section" style="--bg:var(--bg-light); --bg-alt:var(--bg-light); --bg-card:var(--bg-light-card); --text:var(--ink); --text-muted:var(--text-muted-light); --line:var(--line-light); width:100%; background:var(--bg); color:var(--text); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
+  <!-- O ESCRITÓRIO (dark) -->
+  <section class="office-section" style="width:100%; background:var(--bg-alt); color:var(--text); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
     <div style="max-width:1140px; margin:0 auto;">
       <div class="office-grid">
         <div style="display:flex; flex-direction:column; gap:22px; min-width:0;">
@@ -331,14 +422,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div><span class="stat-number">+25</span><span class="stat-label">Anos de expertise</span></div>
         <div><span class="stat-number">100%</span><span class="stat-label">Defesa exclusiva do trabalhador</span></div>
       </div>
-      <div class="office-cta" style="display:flex; justify-content:flex-start; margin-top:40px;">
-        <a href="#" class="js-wa-cta btn-cta" target="_blank" rel="noopener">SOLICITAR ANÁLISE DO MEU CASO<svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-      </div>
     </div>
   </section>
 
-  <!-- VOCÊ JÁ SE PEGOU PENSANDO (dark) -->
-  <section class="problems-section" style="width:100%; background:var(--bg-alt); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
+  <!-- VOCÊ JÁ SE PEGOU PENSANDO (light) -->
+  <section class="problems-section" style="--bg:var(--bg-light); --bg-alt:var(--bg-light); --bg-card:var(--bg-light-card); --text:var(--ink); --text-muted:var(--text-muted-light); --line:var(--line-light); width:100%; background:var(--bg); color:var(--text); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
     <div style="max-width:1140px; margin:0 auto;">
       <div class="section-heading" style="max-width:720px; margin:0 0 56px 0;">
         <div class="rule-mark"></div>
@@ -346,38 +434,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="section-title">Caso você já tenha pensado algo assim, pode haver algum direito sendo desrespeitado</h2>
         <p class="body-text" style="max-width:640px;">Nem sempre uma irregularidade é percebida imediatamente. Muitas vezes, determinadas práticas acabam sendo tratadas como “normais” na rotina de trabalho.</p>
       </div>
-      <div class="grid-3 problem-grid" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px;">
+      <div class="grid-3 problem-grid" style="display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:20px;">
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Faço horas extras e nem sempre esse tempo é registrado ou pago.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Jornada e horas extras</span>
+          <a href="#" class="js-wa-cta btn-card" target="_blank" rel="noopener">SOLICITAR ANÁLISE<svg class="cta-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">As cobranças por metas são constantes e, em algumas situações, acontecem de forma humilhante.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Cobranças abusivas de metas e assédio moral</span>
+          <a href="#" class="js-wa-cta btn-card" target="_blank" rel="noopener">SOLICITAR ANÁLISE<svg class="cta-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Tenho um cargo de confiança, mas na prática não tenho poderes de mando e de gestão.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Cargo de confiança descaracterizado</span>
+          <a href="#" class="js-wa-cta btn-card" target="_blank" rel="noopener">SOLICITAR ANÁLISE<svg class="cta-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">A pressão e a rotina de trabalho começaram a afetar minha saúde.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Possível doença relacionada ao trabalho</span>
+          <a href="#" class="js-wa-cta btn-card" target="_blank" rel="noopener">SOLICITAR ANÁLISE<svg class="cta-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Exerço atividades além daquelas para as quais fui contratado, sem uma remuneração correspondente.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Diferenças salariais – desvio/acúmulo de função</span>
-        </div>
-        <div class="quote-card hover-lift problem-cta" style="grid-column:1 / -1; padding:30px 28px; display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px 32px; background:color-mix(in srgb, var(--gold), transparent 92%);">
-          <div style="flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:8px;">
-            <p class="problem-cta-title" style="font-family:'Spectral',serif; font-size:19px; font-weight:600; color:var(--text); margin:0; line-height:1.4;">Alguma dessas situações faz parte ou fez parte da sua rotina?</p>
-            <p class="body-text" style="font-size:14.5px; max-width:560px;">Uma análise individualizada pode ajudar você a compreender melhor os seus direitos e as particularidades do seu caso.</p>
-          </div>
-          <a href="#" class="js-wa-cta btn-cta" target="_blank" rel="noopener">SOLICITAR ANÁLISE DO MEU CASO<svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          <a href="#" class="js-wa-cta btn-card" target="_blank" rel="noopener">SOLICITAR ANÁLISE<svg class="cta-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
       </div>
     </div>
@@ -518,7 +604,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="footer-grid" style="display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:48px; padding-bottom:44px;">
         <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start;">
           <img src="logo-sm.png" alt="ACO Advocacia" style="height:34px; width:auto; flex-shrink:0;" />
-          <div class="rule-mark" style="margin:0;"></div>
           <p class="body-text" style="font-size:13.5px; line-height:1.7; max-width:300px;">Advocacia trabalhista especializada na defesa de bancários, economiários, financiários e demais profissionais do setor financeiro, com atuação em todo o país.</p>
         </div>
         <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start;">

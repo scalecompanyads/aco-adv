@@ -58,6 +58,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .rule-mark { width: 36px; height: 1px; background: var(--gold); margin: 0 0 14px 0; }
 
+  /* Grade de situações: 3 cards na primeira linha e 2 mais largos na segunda (sem card órfão) */
+  .problem-grid .quote-card { grid-column: span 2; }
+  .problem-grid .quote-card:nth-child(n+4) { grid-column: span 3; }
+  .btn-card {
+    display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; margin-top: auto;
+    padding: 10px 16px; border-radius: 6px; border: 1px solid color-mix(in srgb, var(--gold), transparent 55%);
+    font-family: 'Work Sans', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+  .btn-card:hover { background: color-mix(in srgb, var(--gold), transparent 88%); border-color: var(--gold); }
+  .btn-card:hover .cta-arrow { transform: translate(2px,-2px); }
+
   .icon-badge {
     width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
     background: color-mix(in srgb, var(--text), transparent 93%);
@@ -115,6 +127,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (max-width: 1200px) {
     .grid-3 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
     .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    .problem-grid .quote-card, .problem-grid .quote-card:nth-child(n+4) { grid-column: auto; }
+    .problem-grid .quote-card:last-child { grid-column: 1 / -1; }
   }
   @media (min-width: 761px) and (max-width: 1000px) {
     .hero-content { max-width: 470px !important; }
@@ -123,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (max-width: 760px) {
     html, body { overflow-x: clip; }
     .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr !important; }
-    .quote-card[style*="grid-column"] { grid-column: auto !important; }
+    .problem-grid .quote-card:last-child { grid-column: auto; }
     .about-row { flex-direction: column !important; }
     .about-row > div:first-child { flex: 0 0 auto !important; max-width: 320px !important; width: 100% !important; margin: 12px auto !important; }
     .about-copy { min-width: 0 !important; }
@@ -153,15 +167,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .final-cta-section { padding: 68px 20px !important; }
     .section-heading, .section-heading-centered { margin-bottom: 34px !important; }
     .problem-grid, .faq-grid { gap: 14px !important; }
-    .problem-cta {
-      flex-direction: column !important;
-      align-items: stretch !important;
-      gap: 18px !important;
-      padding: 24px 20px !important;
-      text-align: center;
-    }
-    .problem-cta .problem-cta-title { font-size: 18px !important; }
-    .problem-cta .body-text { font-size: 14px !important; }
 
     .steps-grid { gap: 12px !important; }
     .steps-grid .step-card {
@@ -304,38 +309,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="section-title">Caso você já tenha pensado algo assim, pode haver algum direito sendo desrespeitado</h2>
         <p class="body-text" style="max-width:640px;">Nem sempre uma irregularidade é percebida imediatamente. Muitas vezes, determinadas práticas acabam sendo tratadas como “normais” na rotina de trabalho.</p>
       </div>
-      <div class="grid-3 problem-grid" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px;">
+      <div class="grid-3 problem-grid" style="display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:20px;">
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Faço horas extras e nem sempre esse tempo é registrado ou pago.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Jornada e horas extras</span>
+          <a href="#" class="js-wa-cta btn-card" target="_blank" rel="noopener">SOLICITAR ANÁLISE<svg class="cta-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">As cobranças por metas são constantes e, em algumas situações, acontecem de forma humilhante.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Cobranças abusivas de metas e assédio moral</span>
+          <a href="#" class="js-wa-cta btn-card" target="_blank" rel="noopener">SOLICITAR ANÁLISE<svg class="cta-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Tenho um cargo de confiança, mas na prática não tenho poderes de mando e de gestão.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Cargo de confiança descaracterizado</span>
+          <a href="#" class="js-wa-cta btn-card" target="_blank" rel="noopener">SOLICITAR ANÁLISE<svg class="cta-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">A pressão e a rotina de trabalho começaram a afetar minha saúde.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Possível doença relacionada ao trabalho</span>
+          <a href="#" class="js-wa-cta btn-card" target="_blank" rel="noopener">SOLICITAR ANÁLISE<svg class="cta-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
           <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Exerço atividades além daquelas para as quais fui contratado, sem uma remuneração correspondente.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Diferenças salariais – desvio/acúmulo de função</span>
-        </div>
-        <div class="quote-card hover-lift problem-cta" style="grid-column:1 / -1; padding:30px 28px; display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px 32px; background:color-mix(in srgb, var(--gold), transparent 92%);">
-          <div style="flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:8px;">
-            <p class="problem-cta-title" style="font-family:'Spectral',serif; font-size:19px; font-weight:600; color:var(--text); margin:0; line-height:1.4;">Alguma dessas situações faz parte ou fez parte da sua rotina?</p>
-            <p class="body-text" style="font-size:14.5px; max-width:560px;">Uma análise individualizada pode ajudar você a compreender melhor os seus direitos e as particularidades do seu caso.</p>
-          </div>
-          <a href="#" class="js-wa-cta btn-cta" target="_blank" rel="noopener">SOLICITAR ANÁLISE DO MEU CASO<svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          <a href="#" class="js-wa-cta btn-card" target="_blank" rel="noopener">SOLICITAR ANÁLISE<svg class="cta-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
       </div>
     </div>
@@ -500,7 +503,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="footer-grid" style="display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:48px; padding-bottom:44px;">
         <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start;">
           <img src="logo-sm.png" alt="ACO Advocacia" style="height:34px; width:auto; flex-shrink:0;" />
-          <div class="rule-mark" style="margin:0;"></div>
           <p class="body-text" style="font-size:13.5px; line-height:1.7; max-width:300px;">Advocacia trabalhista especializada na defesa de bancários, economiários, financiários e demais profissionais do setor financeiro, com atuação em todo o país.</p>
         </div>
         <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start;">
