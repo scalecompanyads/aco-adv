@@ -104,7 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     gap: clamp(40px, 5vw, 72px); align-items: center;
   }
   .hero-copy { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
-  .hero-tagline { font-family: 'Spectral', Georgia, serif; font-style: italic; font-weight: 500; font-size: 19px; color: var(--gold); margin: 0; }
+  .hero-tagline { font-family: 'Spectral', Georgia, serif; font-style: italic; font-weight: 500; font-size: 19px; line-height: 1.45; color: var(--gold); margin: 0; text-wrap: balance; }
   .hero-title {
     font-family: 'Spectral', Georgia, serif; font-weight: 600; font-size: clamp(32px, 4.3vw, 52px); line-height: 1.14;
     letter-spacing: -0.015em; color: var(--text); margin: 0; text-wrap: balance;
@@ -118,18 +118,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     box-shadow: 0 30px 60px rgba(0,0,0,0.45);
   }
   .titular-photo { display: block; width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: center 34%; border-radius: 8px 8px 0 0; }
-  .titular-body { padding: 26px 28px 28px; display: flex; flex-direction: column; gap: 12px; }
+  .titular-body { padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 12px; }
   .titular-name { font-family: 'Spectral', Georgia, serif; font-style: italic; font-weight: 600; font-size: 27px; line-height: 1.15; color: var(--text); margin: 0; }
   .titular-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; padding-top: 18px; border-top: 1px solid var(--line); }
   .stat-number { display: block; font-family: 'Spectral', Georgia, serif; font-weight: 600; font-size: 30px; line-height: 1; color: var(--gold); }
   .stat-label { display: block; margin-top: 7px; font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.45; color: var(--text-muted); }
-  .btn-outline {
-    display: inline-flex; align-items: center; justify-content: center; gap: 9px; margin-top: 8px;
-    border: 1px solid color-mix(in srgb, var(--gold), transparent 30%); border-radius: 6px; padding: 14px 22px;
-    font-family: 'Work Sans', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
-    transition: background 0.25s ease, transform 0.25s ease;
-  }
-  .btn-outline:hover { background: color-mix(in srgb, var(--gold), transparent 88%); transform: translateY(-2px); }
 
   /* O ESCRITÓRIO (apresentação do titular) */
   .office-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(40px, 5vw, 72px); align-items: start; }
@@ -228,7 +221,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero-copy { gap: 16px; }
     .hero-logo { height: 36px !important; }
     .hero-tagline { font-size: 17px; }
-    .hero-eyebrow { font-size: 10.5px !important; line-height: 1.45; }
     .hero-title { font-size: clamp(30px, 8vw, 36px); }
     .hero-description { font-size: 15px; line-height: 1.6; }
     .hero-action { width: 100%; align-items: center; }
@@ -238,7 +230,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .titular-body { padding: 22px 20px 24px; }
     .titular-name { font-size: 24px; }
     .stat-number { font-size: 26px; }
-    .btn-outline { width: 100%; }
 
     .office-title { font-size: clamp(28px, 7.4vw, 34px) !important; }
     .office-stats { grid-template-columns: 1fr; gap: 0; margin-top: 36px; padding-top: 8px; }
@@ -264,9 +255,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-inner">
       <div class="hero-copy">
         <img class="hero-logo" src="logo-sm.png" alt="ACO Advocacia" style="height:42px; width:auto; align-self:flex-start;" />
-        <p class="hero-tagline">Advocacia Trabalhista Especializada</p>
-        <div class="rule-mark" style="margin-bottom:0;"></div>
-        <p class="eyebrow hero-eyebrow" style="margin:0; text-wrap:balance;">DIREITO BANCÁRIO · DEFESA DO TRABALHADOR EM TODO O PAÍS</p>
+        <p class="hero-tagline">Advocacia Trabalhista Especializada · Direito Bancário · Defesa do trabalhador em todo o país</p>
         <h1 class="hero-title">Quando o banco <em>desrespeita</em> seus direitos trabalhistas, alguém precisa responder.</h1>
         <p class="hero-description">Há mais de 25 anos a ACO Advocacia dedica-se à defesa exclusiva dos trabalhadores do setor financeiro (bancários, economiários e financiários) em todo o país. Atuação técnica, discreta e focada em resultado.</p>
         <div class="hero-action">
@@ -287,7 +276,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div><span class="stat-number">1.400+</span><span class="stat-label">Processos conduzidos</span></div>
             <div><span class="stat-number">25+</span><span class="stat-label">Anos de especialização</span></div>
           </div>
-          <a href="#" class="js-wa-cta btn-outline" target="_blank" rel="noopener">CONVERSAR COM A EQUIPE<svg class="cta-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
       </aside>
     </div>
