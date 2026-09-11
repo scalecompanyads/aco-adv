@@ -149,7 +149,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .stat-number { display: block; font-family: 'Spectral', Georgia, serif; font-weight: 600; font-size: 30px; line-height: 1; color: var(--gold); }
   .stat-label { display: block; margin-top: 7px; font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.45; color: var(--text-muted); }
 
-  /* O ESCRITÓRIO (apresentação do titular) */
+  /* O ESCRITÓRIO (apresentação do titular) — foto do escritório ao fundo, escurecida para leitura */
+  .office-section {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(23,17,9,0.97) 0%, rgba(23,17,9,0.93) 45%, rgba(23,17,9,0.74) 100%),
+      linear-gradient(180deg, rgba(23,17,9,0.6) 0%, rgba(23,17,9,0) 25%, rgba(23,17,9,0) 75%, rgba(23,17,9,0.6) 100%),
+      url("hero-v1-sm.jpg") right center / cover no-repeat var(--bg-alt);
+  }
   .office-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(40px, 5vw, 72px); align-items: start; }
   .office-title { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.18; }
   .office-title em { font-style: italic; color: var(--gold); }
@@ -251,6 +258,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .footer-bottom p { order: 0 !important; }
 
     .hero { padding: 36px 20px 56px !important; }
+    .office-section {
+      background:
+        linear-gradient(180deg, rgba(23,17,9,0.93) 0%, rgba(23,17,9,0.9) 100%),
+        url("hero-v1-sm.jpg") 70% center / cover no-repeat var(--bg-alt) !important;
+    }
     .hero-copy, .hero-copy-main { gap: 16px; }
     .hero-logo { height: 36px !important; }
     .hero-tagline { font-size: 17px; }
@@ -278,7 +290,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WD73CSMN"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<div class="site-shell" style="--gold:#b6935c; --cta:#33a852; --ink:#1b1509; --bg:#120e0a; --bg-alt:#171109; --bg-card:#1d1610; --line:color-mix(in srgb, var(--gold), transparent 86%); --text:#f5efe3; --text-muted:#b6a98e; --bg-light:#f5efe1; --bg-light-card:#ffffff; --text-muted-light:#7d6c50; --line-light:rgba(27,21,9,0.1); width:100%; position:relative; overflow-x:hidden; background:var(--bg); color:var(--text); font-family:'Work Sans',system-ui,sans-serif;">
+<div class="site-shell" style="--gold:#b6935c; --cta:#33a852; --ink:#1b1509; --bg:#120e0a; --bg-alt:#171109; --bg-card:#1d1610; --line:color-mix(in srgb, var(--gold), transparent 86%); --text:#f5efe3; --text-muted:#e2dbcd; --bg-light:#f5efe1; --bg-light-card:#ffffff; --text-muted-light:#7d6c50; --line-light:rgba(27,21,9,0.1); width:100%; position:relative; overflow-x:hidden; background:var(--bg); color:var(--text); font-family:'Work Sans',system-ui,sans-serif;">
 
   <div class="grain-overlay"></div>
 
@@ -399,8 +411,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- O ESCRITÓRIO (dark) -->
-  <section class="office-section" style="width:100%; background:var(--bg-alt); color:var(--text); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
+  <!-- O ESCRITÓRIO (dark, foto do escritório ao fundo) -->
+  <section class="office-section" style="width:100%; color:var(--text); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
     <div style="max-width:1140px; margin:0 auto;">
       <div class="office-grid">
         <div style="display:flex; flex-direction:column; gap:22px; min-width:0;">
