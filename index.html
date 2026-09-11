@@ -10,8 +10,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ACO Advocacia | Direito Trabalhista Bancário</title>
-<meta name="description" content="Advocacia trabalhista especializada em bancários, correspondentes bancários e profissionais do mercado financeiro. Solicite a análise do seu caso.">
+<title>ACO Advocacia | Advocacia Trabalhista para Bancários, Economiários e Financiários</title>
+<meta name="description" content="Advocacia trabalhista especializada na defesa de bancários, economiários, financiários e demais profissionais do setor financeiro, com atuação em todo o país. Solicite a análise do seu caso.">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="theme-color" content="#120e0a">
@@ -92,6 +92,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   .hero-content { animation: fadeUp 0.9s ease-out both; }
 
+  .hero { position: relative; width: 100%; min-height: clamp(600px, 60vw, 820px); overflow: hidden; background: var(--bg); display: flex; }
+  .hero-inner { position: relative; z-index: 5; width: 100%; max-width: 1280px; margin: 0 auto; display: flex; align-items: center; }
+  /* Foto vertical: coluna ancorada à direita da viewport; o degradê da esquerda funde a borda com o fundo */
+  .hero-photo { position: absolute; top: 0; right: 0; bottom: 0; width: min(54%, 760px); z-index: 1; }
+
+  .hero-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .hero-chip {
+    display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--gold), transparent 45%);
+    background: color-mix(in srgb, var(--gold), transparent 85%);
+    font-family: 'Work Sans', sans-serif; font-weight: 700; font-size: 11.5px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold); white-space: nowrap; text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+  }
+  .hero-chip strong { font-family: 'Spectral', serif; font-weight: 700; font-size: 18px; line-height: 1; letter-spacing: 0; }
+
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .marquee-track { display: flex; align-items: center; width: max-content; animation: marquee 20s linear infinite; }
   .marquee-set { display: flex; align-items: center; gap: 28px; }
@@ -100,6 +115,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (max-width: 1200px) {
     .grid-3 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
     .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  }
+  @media (min-width: 761px) and (max-width: 1000px) {
+    .hero-content { max-width: 470px !important; }
+    .hero-photo { width: 52%; }
   }
   @media (max-width: 760px) {
     html, body { overflow-x: clip; }
@@ -141,7 +160,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding: 24px 20px !important;
       text-align: center;
     }
-    .problem-cta p { font-size: 18px !important; }
+    .problem-cta .problem-cta-title { font-size: 18px !important; }
+    .problem-cta .body-text { font-size: 14px !important; }
 
     .steps-grid { gap: 12px !important; }
     .steps-grid .step-card {
@@ -176,6 +196,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       min-height: 0;
       background: var(--bg);
     }
+    .hero-photo { left: 0 !important; width: 100% !important; }
     .hero-image { object-position: center top !important; }
     .hero-overlay-primary {
       background: linear-gradient(180deg, rgba(18,14,10,0.07) 0%, rgba(18,14,10,0.12) 27%, rgba(18,14,10,0.5) 49%, rgba(18,14,10,0.9) 72%, var(--bg) 100%) !important;
@@ -195,6 +216,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .hero-logo { height: 36px !important; align-self: center !important; }
     .hero-rule { align-self: center; }
+    .hero-badges { justify-content: center; }
+    .hero-chip { font-size: 10px; padding: 7px 13px 7px 11px; }
+    .hero-chip strong { font-size: 16px; }
     .hero-eyebrow { font-size: 10.5px !important; line-height: 1.45; }
     .hero-title { font-size: clamp(27px, 7.3vw, 32px) !important; line-height: 1.17 !important; }
     .hero-description { max-width: 355px !important; font-size: 15px !important; line-height: 1.58 !important; }
@@ -221,23 +245,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="grain-overlay"></div>
 
   <!-- HERO (dark, photo) -->
-  <section class="hero" style="position:relative; width:100%; height:clamp(600px,60vw,820px); overflow:hidden;">
-    <picture style="display:contents;">
-      <source media="(max-width: 760px)" srcset="mobile-bg-hero-sm.jpg">
-      <img class="hero-image" src="bg-hero-sm.jpg" alt="Dr. Rodrigo Antunes, titular da ACO Advocacia" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:70% 18%; z-index:1;" />
-    </picture>
-    <div class="hero-overlay-primary" style="position:absolute; inset:0; z-index:2; background:linear-gradient(90deg, var(--bg) 0%, var(--bg) 26%, rgba(18,14,10,0.88) 44%, rgba(18,14,10,0.3) 66%, rgba(18,14,10,0.04) 100%);"></div>
-    <div class="hero-overlay-secondary" style="position:absolute; inset:0; z-index:2; background:linear-gradient(180deg, rgba(18,14,10,0.5) 0%, rgba(18,14,10,0) 20%, rgba(18,14,10,0) 74%, rgba(18,14,10,0.68) 100%);"></div>
+  <section class="hero">
+    <div class="hero-photo">
+      <picture style="display:contents;">
+        <source media="(max-width: 760px)" srcset="mobile-bg-hero-sm.jpg">
+        <img class="hero-image" src="hero-rodrigo.jpg" alt="Dr. Rodrigo Antunes, advogado titular da ACO Advocacia" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%;" />
+      </picture>
+      <div class="hero-overlay-primary" style="position:absolute; inset:0; z-index:2; background:linear-gradient(90deg, var(--bg) 0%, rgba(18,14,10,0.6) 10%, rgba(18,14,10,0.15) 24%, rgba(18,14,10,0) 36%);"></div>
+      <div class="hero-overlay-secondary" style="position:absolute; inset:0; z-index:2; background:linear-gradient(180deg, rgba(18,14,10,0.35) 0%, rgba(18,14,10,0) 18%, rgba(18,14,10,0) 72%, rgba(18,14,10,0.75) 100%);"></div>
+    </div>
 
-    <div class="hero-content" style="position:relative; z-index:5; height:100%; display:flex; flex-direction:column; justify-content:center; max-width:600px; padding:clamp(48px,7vw,72px) clamp(20px,5vw,48px); gap:26px;">
-      <img class="hero-logo" src="logo-sm.png" alt="ACO Advocacia" style="height:42px; width:auto; align-self:flex-start; filter:drop-shadow(0 2px 12px rgba(0,0,0,0.5));" />
-      <div class="rule-mark hero-rule" style="margin-bottom:0;"></div>
-      <p class="eyebrow hero-eyebrow" style="margin:0; text-shadow:0 2px 16px rgba(0,0,0,0.5);">DIREITO TRABALHISTA · BANCÁRIOS E MERCADO FINANCEIRO</p>
-      <h1 class="hero-title" style="font-family:'Spectral',Georgia,serif; font-weight:600; font-size:clamp(28px,4vw,46px); line-height:1.22; letter-spacing:-0.01em; color:var(--text); margin:0; text-shadow:0 4px 30px rgba(0,0,0,0.6);">Trabalha ou trabalhou em banco e acredita que seus <span style="color:var(--gold); font-style:italic;">direitos trabalhistas</span> não foram respeitados?</h1>
-      <p class="hero-description" style="font-family:'Work Sans',sans-serif; font-size:16.5px; line-height:1.7; color:var(--text-muted); margin:0; max-width:500px; text-shadow:0 2px 18px rgba(0,0,0,0.55);">A ACO Advocacia analisa jornada, metas, cargo, remuneração e as demais condições da sua relação de trabalho para te dar clareza sobre seus direitos, com responsabilidade e sigilo.</p>
-      <div class="hero-action" style="display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin-top:6px;">
-        <a href="#" class="js-wa-cta btn-cta" target="_blank" rel="noopener">SOLICITAR ANÁLISE DO MEU CASO<svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-        <span style="font-family:'Work Sans',sans-serif; font-size:13px; color:var(--text-muted);">Atendimento confidencial, direto pelo WhatsApp</span>
+    <div class="hero-inner">
+      <div class="hero-content" style="position:relative; display:flex; flex-direction:column; justify-content:center; max-width:600px; padding:clamp(48px,7vw,72px) clamp(20px,5vw,48px); gap:26px;">
+        <img class="hero-logo" src="logo-sm.png" alt="ACO Advocacia" style="height:42px; width:auto; align-self:flex-start; filter:drop-shadow(0 2px 12px rgba(0,0,0,0.5));" />
+        <div class="rule-mark hero-rule" style="margin-bottom:0;"></div>
+        <div class="hero-badges">
+          <span class="hero-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3z"/></svg><strong>+25</strong>anos de experiência</span>
+        </div>
+        <p class="eyebrow hero-eyebrow" style="margin:0; text-wrap:balance; text-shadow:0 2px 16px rgba(0,0,0,0.5);">DIREITO TRABALHISTA · BANCÁRIOS, ECONOMIÁRIOS E FINANCIÁRIOS</p>
+        <h1 class="hero-title" style="font-family:'Spectral',Georgia,serif; font-weight:600; font-size:clamp(28px,4vw,46px); line-height:1.22; letter-spacing:-0.01em; color:var(--text); margin:0; text-shadow:0 4px 30px rgba(0,0,0,0.6);">Trabalha ou trabalhou em banco e acredita que seus <span style="color:var(--gold); font-style:italic;">direitos trabalhistas</span> não foram respeitados?</h1>
+        <p class="hero-description" style="font-family:'Work Sans',sans-serif; font-size:16.5px; line-height:1.7; color:var(--text-muted); margin:0; max-width:500px; text-shadow:0 2px 18px rgba(0,0,0,0.55);">A ACO Advocacia analisa jornada, metas, cargo, remuneração e as demais condições da sua relação de trabalho para te dar clareza sobre seus direitos, com responsabilidade e sigilo.</p>
+        <div class="hero-action" style="display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin-top:6px;">
+          <a href="#" class="js-wa-cta btn-cta" target="_blank" rel="noopener">SOLICITAR ANÁLISE DO MEU CASO<svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          <span style="font-family:'Work Sans',sans-serif; font-size:13px; color:var(--text-muted);">Atendimento confidencial, direto pelo WhatsApp</span>
+        </div>
       </div>
     </div>
   </section>
@@ -258,8 +289,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span style="font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--text);">Sem compromisso inicial</span>
       </div>
       <div style="display:flex; align-items:center; gap:14px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1v3.4c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
-        <span style="font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--text);">Direto pelo WhatsApp</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>
+        <span style="font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--text);">Atuação em todo o país</span>
       </div>
     </div>
   </section>
@@ -267,39 +298,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- VOCÊ JÁ SE PEGOU PENSANDO (dark) -->
   <section class="problems-section" style="width:100%; background:var(--bg-alt); padding:clamp(64px,10vw,120px) clamp(20px,5vw,48px);">
     <div style="max-width:1140px; margin:0 auto;">
-      <div class="section-heading" style="max-width:680px; margin:0 0 56px 0;">
+      <div class="section-heading" style="max-width:720px; margin:0 0 56px 0;">
         <div class="rule-mark"></div>
         <p class="eyebrow">VOCÊ NÃO ESTÁ SOZINHO</p>
-        <h2 class="section-title">Se você já pensou algo assim, pode haver um direito sendo desrespeitado</h2>
+        <h2 class="section-title">Caso você já tenha pensado algo assim, pode haver algum direito sendo desrespeitado</h2>
+        <p class="body-text" style="max-width:640px;">Nem sempre uma irregularidade é percebida imediatamente. Muitas vezes, determinadas práticas acabam sendo tratadas como “normais” na rotina de trabalho.</p>
       </div>
       <div class="grid-3 problem-grid" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px;">
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
-          <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Faço horas extras que nunca aparecem no meu contracheque.</p>
+          <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Faço horas extras e nem sempre esse tempo é registrado ou pago.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Jornada e horas extras</span>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
-          <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Já fui cobrado de forma agressiva e humilhado na frente da equipe.</p>
-          <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Metas abusivas e assédio moral</span>
+          <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">As cobranças por metas são constantes e, em algumas situações, acontecem de forma humilhante.</p>
+          <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Cobranças abusivas de metas e assédio moral</span>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
-          <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Tenho cargo de confiança no papel, mas faço o mesmo que os outros do meu nível.</p>
+          <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Tenho um cargo de confiança, mas na prática não tenho poderes de mando e de gestão.</p>
           <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Cargo de confiança descaracterizado</span>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
-          <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Sinto que adoeci por causa da pressão e da rotina de trabalho.</p>
-          <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Doença ocupacional</span>
+          <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">A pressão e a rotina de trabalho começaram a afetar minha saúde.</p>
+          <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Possível doença relacionada ao trabalho</span>
         </div>
         <div class="quote-card hover-lift" style="padding:28px 24px; display:flex; flex-direction:column; gap:16px;">
           <div class="quote-badge">"</div>
-          <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Acumulo funções que não são minhas e nunca fui pago por isso.</p>
-          <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Desvio, acúmulo ou diferença salarial</span>
+          <p style="font-family:'Spectral',serif; font-style:italic; font-size:16.5px; line-height:1.5; color:var(--text); margin:0;">Exerço atividades além daquelas para as quais fui contratado, sem uma remuneração correspondente.</p>
+          <span style="font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--text-muted);">→ Diferenças salariais – desvio/acúmulo de função</span>
         </div>
-        <div class="quote-card hover-lift problem-cta" style="grid-column:1 / -1; padding:30px 28px; display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; background:color-mix(in srgb, var(--gold), transparent 92%);">
-          <p style="font-family:'Spectral',serif; font-size:19px; font-weight:600; color:var(--text); margin:0; line-height:1.4;">Reconheceu alguma dessas frases?</p>
+        <div class="quote-card hover-lift problem-cta" style="grid-column:1 / -1; padding:30px 28px; display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px 32px; background:color-mix(in srgb, var(--gold), transparent 92%);">
+          <div style="flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:8px;">
+            <p class="problem-cta-title" style="font-family:'Spectral',serif; font-size:19px; font-weight:600; color:var(--text); margin:0; line-height:1.4;">Alguma dessas situações faz parte ou fez parte da sua rotina?</p>
+            <p class="body-text" style="font-size:14.5px; max-width:560px;">Uma análise individualizada pode ajudar você a compreender melhor os seus direitos e as particularidades do seu caso.</p>
+          </div>
           <a href="#" class="js-wa-cta btn-cta" target="_blank" rel="noopener">SOLICITAR ANÁLISE DO MEU CASO<svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
       </div>
@@ -311,36 +346,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="marquee-track" style="height:100%;">
       <div class="marquee-set">
         <span class="marquee-item">ACO ADVOCACIA</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">DIREITO TRABALHISTA BANCÁRIO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">BANCÁRIOS, ECONOMIÁRIOS E FINANCIÁRIOS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">ATUAÇÃO EM TODO O PAÍS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ANÁLISE RESPONSÁVEL DO SEU CASO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ACO ADVOCACIA</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">DIREITO TRABALHISTA BANCÁRIO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">BANCÁRIOS, ECONOMIÁRIOS E FINANCIÁRIOS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">ATUAÇÃO EM TODO O PAÍS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ANÁLISE RESPONSÁVEL DO SEU CASO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ACO ADVOCACIA</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">DIREITO TRABALHISTA BANCÁRIO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">BANCÁRIOS, ECONOMIÁRIOS E FINANCIÁRIOS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">ATUAÇÃO EM TODO O PAÍS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ANÁLISE RESPONSÁVEL DO SEU CASO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ACO ADVOCACIA</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">DIREITO TRABALHISTA BANCÁRIO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">ANÁLISE RESPONSÁVEL DO SEU CASO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">ACO ADVOCACIA</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">DIREITO TRABALHISTA BANCÁRIO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">BANCÁRIOS, ECONOMIÁRIOS E FINANCIÁRIOS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">ATUAÇÃO EM TODO O PAÍS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ANÁLISE RESPONSÁVEL DO SEU CASO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
       </div>
       <div class="marquee-set">
         <span class="marquee-item">ACO ADVOCACIA</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">DIREITO TRABALHISTA BANCÁRIO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">BANCÁRIOS, ECONOMIÁRIOS E FINANCIÁRIOS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">ATUAÇÃO EM TODO O PAÍS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ANÁLISE RESPONSÁVEL DO SEU CASO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ACO ADVOCACIA</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">DIREITO TRABALHISTA BANCÁRIO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">BANCÁRIOS, ECONOMIÁRIOS E FINANCIÁRIOS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">ATUAÇÃO EM TODO O PAÍS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ANÁLISE RESPONSÁVEL DO SEU CASO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ACO ADVOCACIA</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">DIREITO TRABALHISTA BANCÁRIO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">BANCÁRIOS, ECONOMIÁRIOS E FINANCIÁRIOS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">ATUAÇÃO EM TODO O PAÍS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ANÁLISE RESPONSÁVEL DO SEU CASO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ACO ADVOCACIA</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">DIREITO TRABALHISTA BANCÁRIO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">ANÁLISE RESPONSÁVEL DO SEU CASO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">ACO ADVOCACIA</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
-        <span class="marquee-item">DIREITO TRABALHISTA BANCÁRIO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">BANCÁRIOS, ECONOMIÁRIOS E FINANCIÁRIOS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
+        <span class="marquee-item">ATUAÇÃO EM TODO O PAÍS</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
         <span class="marquee-item">ANÁLISE RESPONSÁVEL DO SEU CASO</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
       </div>
     </div>
@@ -351,33 +388,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div style="max-width:1140px; margin:0 auto;">
       <div class="section-heading-centered" style="max-width:660px; margin:0 auto 56px auto; text-align:center;">
         <div class="rule-mark" style="margin:0 auto 14px auto;"></div>
-        <p class="eyebrow" style="text-align:center;">COMO FUNCIONA</p>
-        <h2 class="section-title" style="text-align:center;">Um caminho claro para tomar sua decisão com segurança</h2>
+        <p class="eyebrow" style="text-align:center;">PASSO A PASSO</p>
+        <h2 class="section-title" style="text-align:center;">Como funciona o primeiro contato</h2>
       </div>
       <div class="grid-4 steps-grid" style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px;">
         <div class="step-card hover-lift" style="padding:28px 22px; display:flex; flex-direction:column; gap:16px;">
-          <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg></div>
-          <span class="step-number" style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">01</span>
-          <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">Entender possíveis irregularidades</h3>
-          <p class="body-text" style="font-size:14px;">Analisamos os detalhes da sua rotina de trabalho para identificar o que pode estar em desacordo com a lei.</p>
-        </div>
-        <div class="step-card hover-lift" style="padding:28px 22px; display:flex; flex-direction:column; gap:16px;">
-          <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/></svg></div>
-          <span class="step-number" style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">02</span>
-          <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">Preservar provas e direitos trabalhistas</h3>
-          <p class="body-text" style="font-size:14px;">Orientamos sobre como reunir e preservar documentos e registros que sustentam o seu caso.</p>
-        </div>
-        <div class="step-card hover-lift" style="padding:28px 22px; display:flex; flex-direction:column; gap:16px;">
           <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5z"/><path d="M8 9h8M8 12h5"/></svg></div>
+          <span class="step-number" style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">01</span>
+          <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">Você conta, de forma resumida, o que está acontecendo</h3>
+          <p class="body-text" style="font-size:14px;">Pelo WhatsApp, você pode explicar sua situação e tirar suas primeiras dúvidas.</p>
+        </div>
+        <div class="step-card hover-lift" style="padding:28px 22px; display:flex; flex-direction:column; gap:16px;">
+          <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M15 15l5 5"/></svg></div>
+          <span class="step-number" style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">02</span>
+          <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">Entendemos as particularidades da sua relação de trabalho</h3>
+          <p class="body-text" style="font-size:14px;">São considerados aspectos como função, jornada, metas, remuneração e condições efetivamente vivenciadas no trabalho.</p>
+        </div>
+        <div class="step-card hover-lift" style="padding:28px 22px; display:flex; flex-direction:column; gap:16px;">
+          <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></div>
           <span class="step-number" style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">03</span>
-          <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">Buscar orientação jurídica responsável</h3>
-          <p class="body-text" style="font-size:14px;">Explicamos, de forma clara, o que a legislação trabalhista prevê para a sua situação específica.</p>
+          <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">Você recebe orientação sobre os próximos passos</h3>
+          <p class="body-text" style="font-size:14px;">Explicamos de forma clara o que a legislação trabalhista prevê para a sua situação específica, como preservar provas e como funciona uma eventual atuação jurídica.</p>
         </div>
         <div class="step-card hover-lift" style="padding:28px 22px; display:flex; flex-direction:column; gap:16px;">
           <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div>
           <span class="step-number" style="font-family:'Spectral',serif; font-size:13px; color:var(--gold); letter-spacing:0.12em;">04</span>
-          <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">Tomar decisão com segurança jurídica</h3>
-          <p class="body-text" style="font-size:14px;">Você decide os próximos passos com informação completa sobre riscos, prazos e possibilidades.</p>
+          <h3 style="font-family:'Spectral',serif; font-size:17px; font-weight:600; color:var(--text); margin:0;">A decisão é sua</h3>
+          <p class="body-text" style="font-size:14px;">Antes de qualquer medida, você recebe as informações necessárias para decidir com segurança.</p>
         </div>
       </div>
       <div class="steps-cta" style="display:flex; justify-content:center; margin-top:52px;">
@@ -400,9 +437,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="about-copy" style="flex:1; display:flex; flex-direction:column; gap:18px; min-width:280px;">
         <div class="rule-mark"></div>
         <p class="eyebrow">SOBRE O ESCRITÓRIO</p>
-        <h2 class="section-title" style="margin-bottom:0;">Dr. Rodrigo Antunes, titular da ACO Advocacia</h2>
-        <p class="body-text">Com mais de 25 anos de atuação em Direito Trabalhista, o Dr. Rodrigo Antunes é titular da ACO Advocacia, com foco especial em demandas envolvendo bancários, profissionais de financeiras, meios de pagamento e correspondentes bancários.</p>
-        <p class="body-text">O escritório trabalha com análise cuidadosa da jornada, da função exercida, da remuneração, do ambiente profissional e das demais particularidades de cada relação de trabalho, porque cada caso tem contornos próprios.</p>
+        <h2 class="section-title" style="margin-bottom:0;">Dr. Rodrigo Antunes, advogado titular do escritório</h2>
+        <p class="body-text">Com mais de 25 anos de atuação na defesa dos trabalhadores, o Dr. Rodrigo Antunes é advogado titular da ACO Advocacia, com foco em demandas de bancários, economiários, financiários e demais profissionais do setor financeiro de todo o país.</p>
+        <p class="body-text">O escritório analisa de forma individualizada a jornada, a função, a remuneração, o ambiente de trabalho e as demais particularidades da relação profissional, considerando a realidade de cada trabalhador.</p>
         <div style="margin-top:10px;">
           <a href="#" class="js-wa-cta btn-cta" target="_blank" rel="noopener">SOLICITAR ANÁLISE DO MEU CASO<svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
@@ -464,13 +501,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start;">
           <img src="logo-sm.png" alt="ACO Advocacia" style="height:34px; width:auto; flex-shrink:0;" />
           <div class="rule-mark" style="margin:0;"></div>
-          <p class="body-text" style="font-size:13.5px; line-height:1.7; max-width:280px;">Advocacia trabalhista especializada em bancários, correspondentes bancários e profissionais do mercado financeiro.</p>
+          <p class="body-text" style="font-size:13.5px; line-height:1.7; max-width:300px;">Advocacia trabalhista especializada na defesa de bancários, economiários, financiários e demais profissionais do setor financeiro, com atuação em todo o país.</p>
         </div>
         <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start;">
           <p class="eyebrow" style="margin:0; font-size:11px;">CONTATO</p>
           <div style="display:flex; align-items:flex-start; gap:10px;">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 15px; margin-top:2px;"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
-            <span style="font-family:'Work Sans',sans-serif; font-size:13px; line-height:1.65; color:var(--text-muted);">Ed. Michelini<br/>Praça Costa Pereira, 52, Centro<br/>Vitória - ES, 29010-080</span>
+            <span style="font-family:'Work Sans',sans-serif; font-size:13px; line-height:1.65; color:var(--text-muted);">Ed. Michelini, salas 809 a 812<br/>Praça Costa Pereira, 52, Centro<br/>Vitória - ES, 29010-080</span>
           </div>
           <a href="tel:+552731322034" style="display:flex; align-items:center; gap:10px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 14px;"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1v3.4c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
