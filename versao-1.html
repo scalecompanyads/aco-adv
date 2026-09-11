@@ -101,9 +101,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .hero-inner {
     max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-    gap: clamp(40px, 5vw, 72px); align-items: center;
+    gap: clamp(40px, 5vw, 72px); align-items: stretch;
   }
-  .hero-copy { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+  /* Coluna de texto ocupa a altura do card: logo no topo, CTA na base, texto centralizado entre eles */
+  .hero-copy { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; min-width: 0; }
+  .hero-copy-main { display: flex; flex-direction: column; gap: 22px; }
   .hero-tagline { font-family: 'Spectral', Georgia, serif; font-style: italic; font-weight: 500; font-size: 19px; line-height: 1.45; color: var(--gold); margin: 0; text-wrap: balance; }
   .hero-title {
     font-family: 'Spectral', Georgia, serif; font-weight: 600; font-size: clamp(32px, 4.3vw, 52px); line-height: 1.14;
@@ -114,7 +116,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hero-action { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 4px; }
 
   .titular-card {
-    position: relative; background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px; overflow: visible;
+    position: relative; align-self: center; background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px; overflow: visible;
     box-shadow: 0 30px 60px rgba(0,0,0,0.45);
   }
   .titular-photo { display: block; width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: center 34%; border-radius: 8px 8px 0 0; }
@@ -218,7 +220,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .footer-bottom p { order: 0 !important; }
 
     .hero { padding: 36px 20px 56px !important; }
-    .hero-copy { gap: 16px; }
+    .hero-copy, .hero-copy-main { gap: 16px; }
     .hero-logo { height: 36px !important; }
     .hero-tagline { font-size: 17px; }
     .hero-title { font-size: clamp(30px, 8vw, 36px); }
@@ -255,9 +257,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-inner">
       <div class="hero-copy">
         <img class="hero-logo" src="logo-sm.png" alt="ACO Advocacia" style="height:42px; width:auto; align-self:flex-start;" />
-        <p class="hero-tagline">Advocacia Trabalhista Especializada · Direito Bancário · Defesa do trabalhador em todo o país</p>
-        <h1 class="hero-title">Quando o banco <em>desrespeita</em> seus direitos trabalhistas, alguém precisa responder.</h1>
-        <p class="hero-description">Há mais de 25 anos a ACO Advocacia dedica-se à defesa exclusiva dos trabalhadores do setor financeiro (bancários, economiários e financiários) em todo o país. Atuação técnica, discreta e focada em resultado.</p>
+        <div class="hero-copy-main">
+          <p class="hero-tagline">Advocacia Trabalhista Especializada · Direito Bancário · Defesa do trabalhador em todo o país</p>
+          <h1 class="hero-title">Quando o banco <em>desrespeita</em> seus direitos trabalhistas, alguém precisa responder.</h1>
+          <p class="hero-description">Há mais de 25 anos a ACO Advocacia dedica-se à defesa exclusiva dos trabalhadores do setor financeiro (bancários, economiários e financiários) em todo o país. Atuação técnica, discreta e focada em resultado.</p>
+        </div>
         <div class="hero-action">
           <a href="#" class="js-wa-cta btn-cta" target="_blank" rel="noopener">SOLICITAR ANÁLISE DO MEU CASO<svg class="cta-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
           <span style="font-family:'Work Sans',sans-serif; font-size:13px; color:var(--text-muted);">Atendimento confidencial, direto pelo WhatsApp</span>
