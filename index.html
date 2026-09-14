@@ -136,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .marquee-track { display: flex; align-items: center; width: max-content; animation: marquee 20s linear infinite; }
-  .marquee-set { display: flex; align-items: center; gap: 28px; }
+  .marquee-set { display: flex; align-items: center; gap: 28px; margin-right: 28px; }
   .marquee-item { font-family: 'Work Sans', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--ink); display: flex; align-items: center; height: 52px; white-space: nowrap; }
 
   @media (max-width: 1200px) {
@@ -361,7 +361,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- MARQUEE RIBBON -->
-  <div style="position:relative; width:100%; height:52px; overflow:hidden; transform:rotate(-1deg) scale(1.02); background:linear-gradient(100deg, color-mix(in srgb, var(--gold), white 32%) 0%, var(--gold) 22%, color-mix(in srgb, var(--gold), black 20%) 48%, var(--gold) 74%, color-mix(in srgb, var(--gold), white 22%) 100%); margin:-26px 0; z-index:8; box-shadow:0 8px 20px rgba(0,0,0,0.3);">
+  <div style="position:relative; width:100%; height:52px; overflow:hidden; background:linear-gradient(100deg, color-mix(in srgb, var(--gold), white 32%) 0%, var(--gold) 22%, color-mix(in srgb, var(--gold), black 20%) 48%, var(--gold) 74%, color-mix(in srgb, var(--gold), white 22%) 100%); margin:-26px 0; z-index:8; box-shadow:0 8px 20px rgba(0,0,0,0.3);">
     <div class="marquee-track" style="height:100%;">
       <div class="marquee-set">
         <span class="marquee-item">ACO ADVOCACIA</span><svg width="7" height="7" viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" fill="var(--ink)" transform="rotate(45 5 5)"/></svg>
@@ -448,7 +448,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div style="flex:0 0 360px; max-width:360px; position:relative; margin:12px;">
         <div class="corner-tl"></div>
         <div class="corner-br"></div>
-        <img src="dr-rodrigo-sm.jpg" alt="Dr. Rodrigo Antunes, titular da ACO Advocacia" style="display:block; width:100%; height:420px; object-fit:cover; object-position:center top; border-radius:8px; border:1px solid var(--line);" />
+        <div style="height:420px; overflow:hidden; border-radius:8px; border:1px solid var(--line);"><img src="hero-rodrigo.jpg" alt="Dr. Rodrigo Antunes, titular da ACO Advocacia" style="display:block; width:100%; height:100%; object-fit:cover; object-position:center 55%; transform:scale(1.45); transform-origin:38% 62%;" /></div>
         <div style="margin-top:16px; display:flex; justify-content:flex-start;">
           <span style="display:inline-block; border:1px solid var(--gold); padding:7px 16px; border-radius:20px; font-family:'Work Sans',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--gold); text-transform:uppercase;">Titular do Escritório</span>
         </div>
